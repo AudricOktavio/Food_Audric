@@ -18,7 +18,7 @@ from . import models, schemas, preprocessing
 
 # This is not the best practice, it is better to define the model via h5 file right away
 # However there were some bugs that I haven't fixed yet, so I need to initialize the Model before loading the weights
-# This model initialization could also be useful for retraining after user add another new data
+# and on the other hand, This model initialization could also be useful for retraining after user add another new data
 # Or the better approach is by using the AI service from either AWS or GCP making the prediction as an API 
 # rather than putting the model here
 def get_db():
@@ -196,6 +196,8 @@ def combine_values(values, L, k, x0):
     combined_value = weighted_sum / total_weight
     return combined_value
 
+# I realize that this is not the best practice, to train the model while also making it as an API, but since the wait time
+# is not that long it is still acceptable, but the best practice is to have different functions for training and predict
 def user_first_behaviour(user_id: str, n: int): # Frequent vs Occasional
   #user_id
   #n is number to choose n latest customer with id=user_id segmentation score you want to combine
@@ -224,7 +226,8 @@ def user_first_behaviour(user_id: str, n: int): # Frequent vs Occasional
     response = combine_values(user_rankings['cluster'].values[:n], 1.0, 1.0, 0.5)
   return response
 
-def user_second_behaviour(user_id: str, n: int): #we will be using SQLAlchemy if I have enough time to make the API
+def user_second_behaviour(user_id: str, n: int): 
+  #we will be using SQLAlchemy if I have enough time to make the API
   user_features = df.groupby(['user_id', 'month'])['quantity'].sum().reset_index()
   all_user_ids = user_features['user_id'].unique()
   all_months = df['month'].unique()
