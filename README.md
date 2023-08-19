@@ -6,8 +6,8 @@ pip install -r requirements.txt
 
 Most of the explanations were made on notebooks. It has more models and some other things that is not adapted yet to the API
 
-To access the API, clone this repo cd to Food_Audric, then add a converted (to sqlite db) data.csv you have given, name it as food_app.db
-After that on cmd type
+To access the API, clone this then add a converted (to sqlite db) data.csv you have given, name it as food_app.db put it in food_app folder
+After that cd to Food_Audric and on cmd type
 uvicorn food_app.main:app --reload
 to start the server
 
