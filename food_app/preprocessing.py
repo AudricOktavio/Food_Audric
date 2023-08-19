@@ -34,7 +34,7 @@ def extract_month(datetime_obj):
 def extract_year(datetime_obj):
     return datetime_obj.year
 
-def preprocessing_data(db: Session):
+def preprocessing_data(db: Session): #as explained in notebook
     df = convert_db_to_dataframe(db)
     df['trx_date_detail'] = pd.to_datetime(df['trx_date_detail'], format="%Y-%m-%d %H:%M:%S %Z")
     df['user_created_at'] = pd.to_datetime(df['user_created_at'])

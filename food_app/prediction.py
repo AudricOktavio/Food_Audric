@@ -32,7 +32,8 @@ db = next(get_db())
 df = preprocessing.preprocessing_data(db)
 user_menu_quantities = df.groupby(["user_id", "menu_name"])["quantity"].sum().reset_index() #user total purchase per item
 users = tf.data.Dataset.from_tensor_slices(dict(user_menu_quantities[["user_id", "menu_name", "quantity"]]))
-menus = tf.data.Dataset.from_tensor_slices(dict(df[['menu_name']]))
+menus = tf.data.Dataset.from_tensor_slices(dict(df[['menu_name']])) 
+# Please do note that the menus here do not list the whole menus since it does seem that there is a bug that make me not being able to get all the menu set, possibly because of short await time
 
 users = users.map(lambda x: {
     "user_id": x["user_id"],

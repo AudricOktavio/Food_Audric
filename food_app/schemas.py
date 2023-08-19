@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
+# schema is used as typing template
 
 class TransactionCreate(BaseModel):
     trx_date: str
