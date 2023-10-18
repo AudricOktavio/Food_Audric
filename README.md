@@ -1,5 +1,5 @@
 # Food_Audric
- Technical test that involves building machine learning models for a recommendation system.
+ Building machine learning models for a recommendation system.
 
 Please install all the dependency first using
 pip install -r requirements.txt
